@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DSA_Lab3_SafeArrayInt.cpp" />
+    <ClCompile Include="SafeArrayInt.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SafeArrayInt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
