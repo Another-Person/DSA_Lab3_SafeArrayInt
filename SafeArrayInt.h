@@ -2,6 +2,7 @@
 #define SAFE_ARRAY_INT_H
 
 #include <cassert>
+#include <iostream>
 
 class SafeArrayInt
 {
@@ -46,9 +47,10 @@ private:
 public:
 	SafeArrayInt() : arrayTotalCapacity(10), arrayUsedCapacity(0), intArray(new int[arrayTotalCapacity])
 	{
+		intArray[0] = 0;
 	}
 
-	int getUsedCap() const { return arrayUsedCapacity; }
+	int size() const { return (arrayUsedCapacity - 1); }
 	int getTotalCap() const { return arrayTotalCapacity; }
 
 	// ReSharper disable once CppInconsistentNaming
@@ -56,9 +58,9 @@ public:
 	{
 		if (arrayTotalCapacity == arrayUsedCapacity)
 			doubleArraySize();
-		
-		arrayUsedCapacity++;
+
 		intArray[arrayUsedCapacity] = newValue;
+		arrayUsedCapacity++;
 	}
 
 	// ReSharper disable once CppInconsistentNaming
@@ -73,6 +75,33 @@ public:
 		
 		return retVal;
 	}
+
+	int& at(const int pos) const
+	{
+		if (pos >= 0 && pos <= (arrayUsedCapacity - 1))
+		{
+			return intArray[pos];
+		}
+		else
+		{
+			std::cerr << "Error! Tried to access element " << pos << " which is outside the array bounds.\n";
+			exit(1);
+		}
+	}
+
+	int& operator[](const int pos) const
+	{
+		return at(pos);
+	}
+
+	~SafeArrayInt()
+	{
+		delete [] intArray;
+		std::cout << "Deleted intArray from the SafeArrayInt!\n";
+	}
+	
 };
+
+
 
 #endif
