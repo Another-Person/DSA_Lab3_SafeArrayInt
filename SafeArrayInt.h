@@ -50,7 +50,7 @@ public:
 		intArray[0] = 0;
 	}
 
-	int size() const { return (arrayUsedCapacity - 1); }
+	int size() const { return arrayUsedCapacity; }
 	int getTotalCap() const { return arrayTotalCapacity; }
 
 	// ReSharper disable once CppInconsistentNaming
